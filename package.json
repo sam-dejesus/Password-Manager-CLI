@@ -1,0 +1,26 @@
+{
+  "name": "password-manager-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "cli.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sam-dejesus/Password-Manager-CLI.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sam-dejesus/Password-Manager-CLI/issues"
+  },
+  "homepage": "https://github.com/sam-dejesus/Password-Manager-CLI#readme",
+  "dependencies": {
+    "dotenv": "^8.6.0",
+    "inquirer": "^9.2.14",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.29.3",
+    "connect-session-sequelize": "^7.0.4"
+  }
+}
