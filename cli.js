@@ -1,4 +1,4 @@
-// const inquirer = require("inquirer");
+const inquirer = require("inquirer");
 const PORT = process.env.PORT || 3001;
 const mysql = require('mysql2');
 require('dotenv').config();
@@ -16,6 +16,24 @@ const connection = mysql.createConnection({
 connection.connect((err) => {
     if (err) throw err;
     console.log("Connected to the database!");
-// start();
+start();
 
 });
+
+function start() {
+    inquirer
+        .prompt({
+            type: "list",
+            name: "action",
+            message: "What would you like to do?",
+            choices: [
+                "View all passwords",
+                "search password",
+                "update password",
+                "add a new password",
+                "delete a password",
+                "settings",
+                "Exit",
+            ],
+        })
+    }
