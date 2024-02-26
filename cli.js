@@ -113,3 +113,39 @@ function start() {
                 });
         });
     }
+
+    function deletePasswords() {
+        const query = "SELECT * FROM passwords";
+        connection.query(query, (err, res) => {
+            if (err) throw err;
+            const passwordsList = res.map((passwords) => ({
+                name: `${passwords.AccountName} ${passwords.UserName} ${passwords.AccountPassword}`,
+                value: passwords.ID,
+            }));
+            passwordsList.push({ name: "Go Back", value: "back" }); 
+            inquirer
+                .prompt({
+                    type: "list",
+                    name: "ID",
+                    message: "Select the password you want to delete:",
+                    choices: passwordsList,
+                })
+                .then((answer) => {
+                    if (answer.ID === "back") {
+                        // check if user selected "back"
+                        start();
+                        return;
+                    }
+                    const deletequery = "DELETE FROM passwords WHERE ID = ?";
+                    connection.query(deletequery, [answer.ID], (err, res) => {
+                        if (err) throw err;
+                        console.log(
+                            `Deleted password with ID ${answer.ID} from the database!`
+                            
+                        );
+                
+                        start();
+                    });
+                });
+        });
+    }
